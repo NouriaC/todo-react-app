@@ -26,11 +26,16 @@ function App() {
     filterHandler()
   }, [todos, status]);
 
+//Save to Local
+const saveLocalTodos = () => {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
 //Only runs once 
   useEffect(() => {
     const getLocalTodos = () => {
-      if(localStorage.getItem('todos') === null) {
-        localStorage.setItem('todos', JSON.stringify([]));
+      if(localStorage.getItem("todos") === null) {
+        localStorage.setItem("todos", JSON.stringify([]));
       } else {
         let todoLocal = JSON.parse(localStorage.getItem("todos"));
        setTodos(todoLocal);
@@ -38,10 +43,6 @@ function App() {
     }
     getLocalTodos()
   }, [])
-
-  const saveLocalTodos = () => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }
 
 
   return (
